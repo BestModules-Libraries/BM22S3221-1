@@ -4,6 +4,7 @@
 
 BM22S3221-1
 ===========================================================
+
 The BM22S3221-1 is a CO (Carbon Monoxide) Detector Digital Sensor from Best Modules, which uses the UART communication method. This document provides the description of the BM22S3221-1 Arduino Lib functions and how to install the Arduino Lib. The example uses the BMA56M322 module to demonstrate the functions of alarm signal output and CO concentration read.
 
 #### Applicable types:
