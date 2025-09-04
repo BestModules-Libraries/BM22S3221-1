@@ -1,9 +1,8 @@
 /*****************************************************************
 File:        BM22S3221-1.h
-Author:      BESTMODULES
+Author:      BEST MODULES CORP.
 Description: Define classes and required variables
-History:     None
-V1.0.1  --Initial version; 2023-02-14; Arduino IDE : v1.8.19
+Version:     V1.0.2  --2025-08-26
 ******************************************************************/
 #ifndef _BM22S3221_1_H_
 #define _BM22S3221_1_H_

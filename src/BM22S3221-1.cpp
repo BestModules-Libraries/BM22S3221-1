@@ -1,9 +1,8 @@
 /*****************************************************************
 File:        BM22S3221-1.cpp
-Author:      BESTMODULES
+Author:      BEST MODULES CORP.
 Description: None
-History:     None
-V1.0.1  --Initial version; 2023-02-14; Arduino IDE : v1.8.19
+Version:     V1.0.1  --2025-08-26
 ******************************************************************/
 #include "BM22S3221-1.h"
 
@@ -40,8 +39,8 @@ BM22S3221_1::BM22S3221_1(uint8_t statusPin, uint8_t rxPin, uint8_t txPin)
 
 /**********************************************************
 Description:  Module initialization
-Parameters: None
-Return: None
+Parameters: void
+Return: void
 Others: None
 **********************************************************/
 void BM22S3221_1::begin()
@@ -59,8 +58,8 @@ void BM22S3221_1::begin()
 
 /**********************************************************
 Description: Wait for the module warm-up to complete(about 120 seconds)
-Parameters: None
-Return: None
+Parameters: void
+Return: void
 Others: None
 **********************************************************/
 void BM22S3221_1::preheatCountdown()
@@ -70,8 +69,8 @@ void BM22S3221_1::preheatCountdown()
 
 /**********************************************************
 Description: Get STATUS pin level
-Parameters: None
-Return: None
+Parameters: void
+Return: STA Level,0-Low/1-HIGH
 Others: None
 **********************************************************/
 uint8_t BM22S3221_1::getSTATUS()
@@ -81,7 +80,7 @@ uint8_t BM22S3221_1::getSTATUS()
 
 /**********************************************************
 Description: Get the current status of the module
-Parameters: None
+Parameters: void
 Return: module status (refer to datasheet for meaning of each bit)
 Others: None
 **********************************************************/
@@ -101,7 +100,7 @@ uint8_t BM22S3221_1::getWorkStatus()
 
 /**********************************************************
 Description: Read CO concentration value
-Parameters: None
+Parameters: void
 Return: CO concentration value in ppm
 Others: None
 **********************************************************/
@@ -133,7 +132,7 @@ uint16_t BM22S3221_1::readCOValue()
 
 /**********************************************************
 Description: Read CO AD value
-Parameters: None
+Parameters: void
 Return: AD value for CO concentration
 Others: None
 **********************************************************/
@@ -165,7 +164,7 @@ uint16_t BM22S3221_1::readADValue()
 
 /**********************************************************
 Description: Read power-on reference value
-Parameters: None
+Parameters: void
 Return: power-on reference value
 Others: None
 **********************************************************/
@@ -224,7 +223,7 @@ uint8_t BM22S3221_1::requestInfoPackage(uint8_t array[])
 
 /**********************************************************
 Description: Query whether the 32-byte data sent by the module is received
-Parameters: None
+Parameters: void
 Return: true(1): 32-byte data received
         false(0): 32-byte data not received
 Others: Only used in the mode of Tx Auto Output Info
@@ -278,11 +277,9 @@ bool BM22S3221_1::isInfoAvailable()
         {
           readCnt++; // 0xAA not found, continue
         }
-        if (readCnt >= (num - 5))
+        if (readCnt > (num - recLen))
         {
-          readCnt = 0;
-          isHeader = false; // Fixed code not found
-          break;
+          return false; // No data found
         }
       }
 
@@ -333,7 +330,7 @@ bool BM22S3221_1::isInfoAvailable()
 Description: Read the 32-byte data of sent by the module
 Parameters: array: The array for storing the 32-byte module information
                   (refer to datasheet for meaning of each bit)
-Return: None
+Return: void
 Others: Use after isInfoAvailable()
 **********************************************************/
 void BM22S3221_1::readInfoPackage(uint8_t array[])
@@ -346,7 +343,7 @@ void BM22S3221_1::readInfoPackage(uint8_t array[])
 
 /**********************************************************
 Description: reset module
-Parameters: None
+Parameters: void
 Return: 0: check ok
         1: check error
         2: timeout error
@@ -363,7 +360,7 @@ uint8_t BM22S3221_1::resetModule()
 
 /**********************************************************
 Description: Restore module parameters to factory default values
-Parameters: None
+Parameters: void
 Return: 0: check ok
         1: check error
         2: timeout error
@@ -386,7 +383,7 @@ uint8_t BM22S3221_1::restoreDefault()
 
 /**********************************************************
 Description: Get firmware version
-Parameters: None
+Parameters: void
 Return: FW version, for example 0x0106: V1.6
 Others: None
 **********************************************************/
@@ -435,7 +432,7 @@ uint8_t BM22S3221_1::getProDate(uint8_t array[])
 
 /**********************************************************
 Description: Query whether the automatic serial output of the module is enabled
-Parameters: None
+Parameters: void
 Return: true(1): auto-Tx ENABLED
         false(0): auto-Tx DISENABLED
 Others: None
@@ -463,7 +460,7 @@ bool BM22S3221_1::isAutoTx()
 
 /**********************************************************
 Description: Get the alarm output level of the STATUS pin
-Parameters: None
+Parameters: void
 Return: 08 : STATUS pin is high when alarming, low when not alarming
         00 : STATUS pin is low when alarming, high when not alarming
 Others: None
@@ -484,7 +481,7 @@ uint8_t BM22S3221_1::getStatusPinActiveMode()
 
 /**********************************************************
 Description: Get the alarm threshold
-Parameters: None
+Parameters: void
 Return: the threshold value for generating an alarm, in ppm. Default 180 ppm
 Others: None
 **********************************************************/
@@ -516,7 +513,7 @@ uint16_t BM22S3221_1::getAlarmThreshold()
 
 /**********************************************************
 Description: Get the exit alarm threshold
-Parameters: None
+Parameters: void
 Return: the value to stop alarming, in ppm.
         When CO concentration is lower than this value, the alarm stops. Default 55 ppm
 Others: None
@@ -629,7 +626,7 @@ uint8_t BM22S3221_1::setExitAlarmThreshold(uint8_t exitAlarmThreshold)
 }
 /**********************************************************
 Description: Calibrate module
-Parameters: None
+Parameters: void
 Return: 0: check ok
         1: check error
         2: timeout error
@@ -650,8 +647,8 @@ uint8_t BM22S3221_1::calibrateModule()
 
 /**********************************************************
 Description: Wait for the module calibration to complete(about 120 seconds)
-Parameters: None
-Return: None
+Parameters: void
+Return: void
 Others: None
 **********************************************************/
 void BM22S3221_1::calibrateCountdown()
@@ -661,8 +658,8 @@ void BM22S3221_1::calibrateCountdown()
 
 /**********************************************************
 Description: Clear UART Receive FIFO
-Parameters: None
-Return: None
+Parameters: void
+Return: void
 Others: None
 **********************************************************/
 void BM22S3221_1::clear_UART_FIFO()
@@ -687,7 +684,7 @@ void BM22S3221_1::clear_UART_FIFO()
 Description: Write data through UART
 Parameters: wbuf:The array for storing Data to be sent
             wlen:Length of data sent
-Return: None
+Return: void
 Others: None
 **********************************************************/
 void BM22S3221_1::writeBytes(uint8_t wbuf[], uint8_t wlen)
@@ -776,7 +773,7 @@ uint8_t BM22S3221_1::readBytes(uint8_t rbuf[], uint8_t rlen, uint16_t timeout)
 Description: Countdown
 Parameters: 1: Perform preheat countdown
             0: Perform calibration countdown
-Return: None
+Return: void
 Others: None
 **********************************************************/
 void BM22S3221_1::countdown(uint8_t type)

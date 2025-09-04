@@ -5,7 +5,7 @@
 BM22S3221-1
 ===========================================================
 
-The BM22S3221-1 is a CO (Carbon Monoxide) Detector Digital Sensor from Best Modules, which uses the UART communication method. This document provides the description of the BM22S3221-1 Arduino Lib functions and how to install the Arduino Lib. The example uses the BMA56M322 module to demonstrate the functions of alarm signal output and CO concentration read.
+The BM22S3221-1 is a CO (Carbon Monoxide) Detector Digital Sensor from Best Modules, which uses the UART communication method. This document provides the description of the BM22S3221-1 Arduino Lib functions and how to install the Arduino Lib. The example uses the BMA56M322/BMA56M322A module to demonstrate the functions of alarm signal output and CO concentration read.
 
 #### Applicable types:
 <div align=center>
@@ -14,6 +14,7 @@ The BM22S3221-1 is a CO (Carbon Monoxide) Detector Digital Sensor from Best Modu
 |:---------:|:----------------------------:|
 |BM22S3221-1|CO Detector Digital Sensor|
 |BMA56M322  |On-board BM22S3221-1 Sensor|
+|BMA56M322A |On-board BM22S3221-1 Sensor|
 
 </div> 
 
@@ -30,12 +31,15 @@ Repository Contents
 Documentation 
 -------------------
 
-* **[BM22S3221-1 Arduino Library V1.0.1 Description v100]( https://www.bestmodulescorp.com/bm22s3221-1.html#tab-product2 )** - Arduino Library Description.
+* **[BM22S3221-1 Arduino Library Description]( https://www.bestmodulescorp.com/bm22s3221-1.html#tab-product2 )** - Arduino Library Description.
 
 Version History  
 -------------------
-
-* **V1.0.1** - Initial public release.
+* **V1.0.1**  
+&emsp;&emsp;- Initial public release.
+* **V1.0.2**  
+&emsp;&emsp;- Revise the annotation content of some functions.  
+&emsp;&emsp;- Add applicable models: BMA56M322A; 
 
 License Information
 -------------------
@@ -44,8 +48,8 @@ This product is _**open source**_!
 
 Please review the LICENSE.md file for license information. 
 
-If you have any questions or concerns on licensing, please contact technical support on our BESTMODULES Email:service@bestmodulescorp.com
+If you have any questions or concerns on licensing, please contact technical support on our BEST MODULES CORP. Email:service@bestmodulescorp.com
 
 Distributed as-is; no warranty is given.
 
-BESTMODULES
+BEST MODULES CORP.
